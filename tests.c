@@ -2,6 +2,7 @@
 #include "stack.h"
 #include "binary_tree.h"
 #include "queue.h"
+#include "vector.h"
 
 #include <stdint.h>
 #include <unity/unity.h>
@@ -102,6 +103,34 @@ void Test_Queue(void) {
     queueFree(&queue);
 }
 
+void Test_Vector(void) {
+    TVector vec;
+    vecInit(&vec);
+
+    vecPushBack(&vec, 1);
+    vecPushBack(&vec, 2);
+    vecPushBack(&vec, 3);
+    vecPushBack(&vec, 4);
+    vecPushBack(&vec, 5);
+    TEST_ASSERT_EQUAL(vec.size, 5);
+    vecPrint(&vec);
+
+    int val;
+    TEST_ASSERT_TRUE(vecAt(&vec, 2, &val));
+    TEST_ASSERT_EQUAL(val, 3);
+
+    TEST_ASSERT_TRUE(vecRemove(&vec, 2));
+    vecPrint(&vec);
+    TEST_ASSERT_EQUAL(vec.size, 4);
+    TEST_ASSERT_TRUE(vecAt(&vec, 2, &val));
+    TEST_ASSERT_EQUAL(val, 4);
+    TEST_ASSERT_FALSE(vecAt(&vec, 10, &val));
+    TEST_ASSERT_TRUE(vecContains(&vec, 1));
+    TEST_ASSERT_FALSE(vecContains(&vec, 99));
+
+    vecFree(&vec);
+}
+
 void Test_BinaryTree(void) {
     TBinaryTree tree;
     treeInit(&tree);
@@ -132,6 +161,7 @@ int main(int argc, char** argv) {
     RUN_TEST(Test_LinkedList);
     RUN_TEST(Test_Stack);
     RUN_TEST(Test_Queue);
+    RUN_TEST(Test_Vector);
     // RUN_TEST(Test_BinaryTree);
 
     return UNITY_END();

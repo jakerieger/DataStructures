@@ -11,6 +11,8 @@ add_executable(tests tests.c
         binary_tree.h
         binary_tree.c
         queue.h
-        queue.c)
+        queue.c
+        vector.h
+        vector.c)
 find_package(unity REQUIRED)
 target_link_libraries(tests PRIVATE unity)

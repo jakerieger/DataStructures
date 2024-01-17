@@ -16,7 +16,7 @@ do it. See [CONTRIBUTING](#contributing) if you're interested.
 - [ ] [Rope](rope.c)
 - [x] [Stack](stack.c)
 - [x] [Queue](queue.c)
-- [ ] [Vector](vector.c)
+- [x] [Vector](vector.c)
 - ... more coming soon
 
 ## Testing
