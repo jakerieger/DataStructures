@@ -3,4 +3,8 @@ project(DataStructures C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(DataStructures main.c)
+add_executable(tests tests.c
+        linked_list.h
+        linked_list.c)
+find_package(unity REQUIRED)
+target_link_libraries(tests PRIVATE unity)
