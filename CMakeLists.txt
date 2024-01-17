@@ -7,6 +7,10 @@ add_executable(tests tests.c
         linked_list.h
         linked_list.c
         stack.h
-        stack.c)
+        stack.c
+        binary_tree.h
+        binary_tree.c
+        queue.h
+        queue.c)
 find_package(unity REQUIRED)
 target_link_libraries(tests PRIVATE unity)

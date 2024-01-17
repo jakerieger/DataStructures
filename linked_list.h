@@ -3,13 +3,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-typedef struct Node {
+typedef struct ListNode {
     int value;
-    struct Node* next;
-} TNode;
+    struct ListNode* next;
+} TListNode;
 
 typedef struct LinkedList {
-    TNode* head;
+    TListNode* head;
     uint32_t count;
 } TLinkedList;
 

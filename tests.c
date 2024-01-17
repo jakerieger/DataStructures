@@ -1,8 +1,14 @@
 #include "linked_list.h"
 #include "stack.h"
+#include "binary_tree.h"
+#include "queue.h"
+
 #include <stdint.h>
 #include <unity/unity.h>
 
+//====================================================//
+//                  TEST FUNCTIONS                    //
+//====================================================//
 void Test_LinkedList(void) {
 #define RESET_LIST(list, count, free)                                                              \
     do {                                                                                           \
@@ -46,12 +52,13 @@ void Test_LinkedList(void) {
 #undef NUM_VALUES
 #undef RESET_LIST
 }
+
 void Test_Stack(void) {
     TStack stack;
     TEST_ASSERT_TRUE(stackInit(&stack, 8) == 0);
     TEST_ASSERT_TRUE(stackPop(&stack) == -1);
 
-    const int size = stackPush(&stack, 42);
+    int size = stackPush(&stack, 42);
     TEST_ASSERT_TRUE(size == 1);
     TEST_ASSERT_TRUE(stackPop(&stack) == 42);
     TEST_ASSERT_TRUE(stack.size == 0);
@@ -60,12 +67,61 @@ void Test_Stack(void) {
     stackPush(&stack, 2);
     stackPush(&stack, 3);
     stackPush(&stack, 4);
-    stackPush(&stack, 5);
+    size = stackPush(&stack, 5);
+    TEST_ASSERT_TRUE(size == 5);
     stackReset(&stack);
     TEST_ASSERT_TRUE(stack.size == 0);
 
     stackFree(&stack);
 }
+
+void Test_Queue(void) {
+    TQueue queue;
+    queueInit(&queue, 8);
+
+    enqueue(&queue, 1);
+    enqueue(&queue, 2);
+    enqueue(&queue, 3);
+    enqueue(&queue, 4);
+    enqueue(&queue, 5);
+    enqueue(&queue, 6);
+    enqueue(&queue, 7);
+    enqueue(&queue, 8);
+    TEST_ASSERT_TRUE(queue.size == 8);
+    enqueue(&queue, 9);
+    TEST_ASSERT_TRUE(queue.size == 9);
+    int val;
+    dequeue(&queue, &val);
+    TEST_ASSERT_TRUE(val == 1);
+    TEST_ASSERT_TRUE(queue.size == 8);
+    dequeue(&queue, &val);
+    dequeue(&queue, &val);
+    dequeue(&queue, &val);
+    TEST_ASSERT_TRUE(val == 4);
+
+    queueFree(&queue);
+}
+
+void Test_BinaryTree(void) {
+    TBinaryTree tree;
+    treeInit(&tree);
+
+    TTreeNode node01 = {7, NULL, NULL};
+    TTreeNode node0 = {6, NULL, NULL};
+    TTreeNode node1 = {5, NULL, NULL};
+    TTreeNode node2 = {4, NULL, NULL};
+    TTreeNode node3 = {3, &node0, &node01};
+    TTreeNode node4 = {2, &node2, &node1};
+    TTreeNode node5 = {1, &node4, &node3};
+
+    tree.root = &node5;
+    treeContains(&tree, 5);
+
+    treeFree(&tree);
+}
+//====================================================//
+//                  --------------                    //
+//====================================================//
 
 void setUp(void) {}
 void tearDown(void) {}
@@ -75,6 +131,8 @@ int main(int argc, char** argv) {
 
     RUN_TEST(Test_LinkedList);
     RUN_TEST(Test_Stack);
+    RUN_TEST(Test_Queue);
+    // RUN_TEST(Test_BinaryTree);
 
     return UNITY_END();
 }
