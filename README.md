@@ -9,14 +9,14 @@ do it. See [CONTRIBUTING](#contributing) if you're interested.
 
 ## List of Data Structures
 
-- [Binary Tree](binary_tree.c)
-- [Hash Map](hash_map.c)
-- [Linked List (Single)](linked_list.c)
-- [Linked List (Double)](dbl_linked_list.c)
-- [Rope](rope.c)
-- [Stack](stack.c)
-- [Queue](queue.c)
-- [Vector](vector.c)
+- [ ] [Binary Tree](binary_tree.c)
+- [ ] [Hash Map](hash_map.c)
+- [x] [Linked List (Single)](linked_list.c)
+- [ ] [Linked List (Double)](dbl_linked_list.c)
+- [ ] [Rope](rope.c)
+- [ ] [Stack](stack.c)
+- [ ] [Queue](queue.c)
+- [ ] [Vector](vector.c)
 - ... more coming soon
 
 ## Testing

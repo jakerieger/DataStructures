@@ -3,12 +3,12 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-void initList(TLinkedList* list) {
+void listInit(TLinkedList* list) {
     list->head = NULL;
     list->count = 0;
 }
 
-bool push(TLinkedList* list, const int value) {
+bool listPush(TLinkedList* list, const int value) {
     TNode* node = (TNode*) malloc(sizeof(TNode));
     if (node == NULL) {
         return false;
@@ -22,7 +22,7 @@ bool push(TLinkedList* list, const int value) {
     return true;
 }
 
-bool push_back(TLinkedList* list, const int value) {
+bool listPushBack(TLinkedList* list, const int value) {
     TNode* node = (TNode*) malloc(sizeof(TNode));
     if (node == NULL) {
         return false;
@@ -45,7 +45,7 @@ bool push_back(TLinkedList* list, const int value) {
     return true;
 }
 
-bool pop(TLinkedList* list, int* out) {
+bool listPop(TLinkedList* list, int* out) {
     if (list->head == NULL) {
         return false;
     }
@@ -62,7 +62,7 @@ bool pop(TLinkedList* list, int* out) {
     return true;
 }
 
-bool pop_back(TLinkedList* list, int* out) {
+bool listPopBack(TLinkedList* list, int* out) {
     if (list->head == NULL) {
         return false;
     }
@@ -80,14 +80,14 @@ bool pop_back(TLinkedList* list, int* out) {
     return true;
 }
 
-int removeValue(TLinkedList* list, const int value) {
+int listRemoveValue(TLinkedList* list, const int value) {
     if (list->head == NULL) {
         return 0;
     }
 
     int found = 0;
     if (list->head->value == value) {
-        pop(list, NULL);
+        listPop(list, NULL);
         found++;
     }
     TNode* current = list->head;
@@ -106,7 +106,7 @@ int removeValue(TLinkedList* list, const int value) {
     return found;
 }
 
-bool removeAt(TLinkedList* list, const int index) {
+bool listRemoveIndex(TLinkedList* list, const int index) {
     if (list->head == NULL) {
         return false;
     }
@@ -116,7 +116,7 @@ bool removeAt(TLinkedList* list, const int index) {
 
     int i = 0;
     if (index == i) {
-        pop(list, NULL);
+        listPop(list, NULL);
         return true;
     }
     TNode* current = list->head;
@@ -135,7 +135,7 @@ bool removeAt(TLinkedList* list, const int index) {
     return true;
 }
 
-bool contains(const TLinkedList* list, const int value) {
+bool listContains(const TLinkedList* list, const int value) {
     if (list->head == NULL) {
         return false;
     }
@@ -151,7 +151,7 @@ bool contains(const TLinkedList* list, const int value) {
     return false;
 }
 
-bool get(TLinkedList* list, const int index, int* out) {
+bool listGet(TLinkedList* list, const int index, int* out) {
     if (list->head == NULL) {
         return false;
     }
@@ -161,7 +161,7 @@ bool get(TLinkedList* list, const int index, int* out) {
 
     int i = 0;
     if (index == i) {
-        pop(list, out);
+        listPop(list, out);
         return true;
     }
     const TNode* current = list->head;
@@ -177,7 +177,7 @@ bool get(TLinkedList* list, const int index, int* out) {
     return false;
 }
 
-void freeList(TLinkedList* list) {
+void listFree(TLinkedList* list) {
     TNode* node = list->head;
     while (node != NULL) {
         TNode* cur = node;

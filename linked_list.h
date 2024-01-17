@@ -13,15 +13,17 @@ typedef struct LinkedList {
     uint32_t count;
 } TLinkedList;
 
-void initList(TLinkedList* list);
-bool push(TLinkedList* list, int value);
-bool push_back(TLinkedList* list, int value);
-bool pop(TLinkedList* list, int* out);
-bool pop_back(TLinkedList* list, int* out);
-int removeValue(TLinkedList* list, int value);
-bool removeAt(TLinkedList* list, int index);
-bool contains(const TLinkedList* list, int value);
+void listInit(TLinkedList* list);
+bool listPush(TLinkedList* list, int value);
+bool listPushBack(TLinkedList* list, int value);
+bool listPop(TLinkedList* list, int* out);
+bool listPopBack(TLinkedList* list, int* out);
+int listRemoveValue(TLinkedList* list, int value);
+bool listRemoveIndex(TLinkedList* list, int index);
+bool listContains(const TLinkedList* list, int value);
 // TODO: Implement count of value in list
 // bool countOf(TLinkedList* list, int value);
-bool get(TLinkedList* list, int index, int* out);
-void freeList(TLinkedList* list);
+// TODO: Implement index of value in list
+// int indexOf(TLinkedList* list, int value);
+bool listGet(TLinkedList* list, int index, int* out);
+void listFree(TLinkedList* list);
