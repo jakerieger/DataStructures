@@ -1,4 +1,5 @@
 #include "linked_list.h"
+#include "stack.h"
 #include <stdint.h>
 #include <unity/unity.h>
 
@@ -45,6 +46,26 @@ void Test_LinkedList(void) {
 #undef NUM_VALUES
 #undef RESET_LIST
 }
+void Test_Stack(void) {
+    TStack stack;
+    TEST_ASSERT_TRUE(stackInit(&stack, 8) == 0);
+    TEST_ASSERT_TRUE(stackPop(&stack) == -1);
+
+    const int size = stackPush(&stack, 42);
+    TEST_ASSERT_TRUE(size == 1);
+    TEST_ASSERT_TRUE(stackPop(&stack) == 42);
+    TEST_ASSERT_TRUE(stack.size == 0);
+
+    stackPush(&stack, 1);
+    stackPush(&stack, 2);
+    stackPush(&stack, 3);
+    stackPush(&stack, 4);
+    stackPush(&stack, 5);
+    stackReset(&stack);
+    TEST_ASSERT_TRUE(stack.size == 0);
+
+    stackFree(&stack);
+}
 
 void setUp(void) {}
 void tearDown(void) {}
@@ -53,6 +74,7 @@ int main(int argc, char** argv) {
     UNITY_BEGIN();
 
     RUN_TEST(Test_LinkedList);
+    RUN_TEST(Test_Stack);
 
     return UNITY_END();
 }

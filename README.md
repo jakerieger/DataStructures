@@ -14,7 +14,7 @@ do it. See [CONTRIBUTING](#contributing) if you're interested.
 - [x] [Linked List (Single)](linked_list.c)
 - [ ] [Linked List (Double)](dbl_linked_list.c)
 - [ ] [Rope](rope.c)
-- [ ] [Stack](stack.c)
+- [x] [Stack](stack.c)
 - [ ] [Queue](queue.c)
 - [ ] [Vector](vector.c)
 - ... more coming soon

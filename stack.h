@@ -7,7 +7,8 @@ typedef struct Stack {
     size_t size;
 } TStack;
 
-void stackInit();
-void stackPush();
-void stackPop();
-void stackReset();
+int stackInit(TStack* stack, size_t initialCapacity);
+int stackPush(TStack* stack, int value);
+int stackPop(TStack* stack);
+void stackReset(TStack* stack);
+void stackFree(TStack* stack);
