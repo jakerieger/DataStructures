@@ -20,6 +20,8 @@ bool pop(TLinkedList* list, int* out);
 bool pop_back(TLinkedList* list, int* out);
 int removeValue(TLinkedList* list, int value);
 bool removeAt(TLinkedList* list, int index);
-bool find(TLinkedList* list, int value, int* out);
+bool contains(const TLinkedList* list, int value);
+// TODO: Implement count of value in list
+// bool countOf(TLinkedList* list, int value);
 bool get(TLinkedList* list, int index, int* out);
 void freeList(TLinkedList* list);
