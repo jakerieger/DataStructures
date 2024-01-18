@@ -9,10 +9,12 @@ typedef struct Vector {
     int size;
 } TVector;
 
-void vecInit(TVector* vec);
+bool vecInit(TVector* vec);
 void vecPushBack(TVector* vec, int value);
 bool vecAt(TVector* vec, int index, int* out);
 bool vecRemove(TVector* vec, int index);
 bool vecContains(TVector* vec, int value);
+bool vecClear(TVector* vec);
+bool vecEmpty(TVector* vec);
 void vecFree(TVector* vec);
 void vecPrint(TVector* vec);
