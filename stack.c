@@ -3,24 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int stackInit(TStack* stack, const size_t initialCapacity) {
+bool stackInit(TStack* stack, const size_t initialCapacity) {
     stack->stack = (int*) malloc(sizeof(int) * initialCapacity);
     if (stack->stack == NULL) {
-        fprintf(stderr, "Could not allocate stack\n");
-        return 1;
+        return false;
     }
 
     stack->capacity = initialCapacity;
     stack->size = 0;
-    return 0;
+    return true;
 }
 
 int stackPush(TStack* stack, const int value) {
     if (stack->size == stack->capacity) {
         stack->capacity *= 2;
-        stack->stack = (int*)realloc(stack->stack, stack->capacity * sizeof(int));
+        stack->stack = (int*) realloc(stack->stack, stack->capacity * sizeof(int));
         if (stack->stack == NULL) {
-            fprintf(stderr, "Could not allocate stack\n");
             return -1;
         }
     }
@@ -29,13 +27,16 @@ int stackPush(TStack* stack, const int value) {
     return stack->size;
 }
 
-int stackPop(TStack* stack) {
+bool stackPop(TStack* stack, int* out) {
     if (stack->size > 0) {
-        return stack->stack[--stack->size];
+        if (out != NULL) {
+            *out = stack->stack[--stack->size];
+        }
+        return true;
     }
 
     // Stack underflow
-    return -1;
+    return false;
 }
 
 void stackReset(TStack* stack) {

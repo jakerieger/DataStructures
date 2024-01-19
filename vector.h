@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stdbool.h>
-#include <stdint.h>
 
 typedef struct Vector {
     int* values;
@@ -11,6 +10,7 @@ typedef struct Vector {
 
 bool vecInit(TVector* vec);
 void vecPushBack(TVector* vec, int value);
+bool vecFrom(TVector* vec, int data[], int count);
 bool vecAt(TVector* vec, int index, int* out);
 bool vecRemove(TVector* vec, int index);
 bool vecContains(TVector* vec, int value);

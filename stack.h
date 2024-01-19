@@ -1,5 +1,6 @@
 #pragma once
 #include <stddef.h>
+#include <stdbool.h>
 
 typedef struct Stack {
     int* stack;
@@ -7,8 +8,8 @@ typedef struct Stack {
     size_t size;
 } TStack;
 
-int stackInit(TStack* stack, size_t initialCapacity);
+bool stackInit(TStack* stack, size_t initialCapacity);
 int stackPush(TStack* stack, int value);
-int stackPop(TStack* stack);
+bool stackPop(TStack* stack, int* out);
 void stackReset(TStack* stack);
 void stackFree(TStack* stack);

@@ -16,11 +16,27 @@ bool vecInit(TVector* vec) {
 
 void vecPushBack(TVector* vec, int value) {
     if (vec->size == vec->capacity) {
-        vec->capacity += sizeof(int);
-        vec->values = realloc(vec->values, vec->capacity);
+        vec->capacity *= 2;
+        vec->values = realloc(vec->values, vec->capacity * sizeof(int));
     }
 
     vec->values[vec->size++] = value;
+}
+
+bool vecFrom(TVector* vec, int data[], int count) {
+    if (count <= 0) {
+        return false;
+    }
+
+    for (int i = 0; i < count; i++) {
+        vecPushBack(vec, data[i]);
+    }
+
+    if (vec->size != count) {
+        return false;
+    }
+
+    return true;
 }
 
 bool vecAt(TVector* vec, int index, int* out) {
@@ -42,8 +58,8 @@ bool vecRemove(TVector* vec, int index) {
         vec->values[i - 1] = vec->values[i];
     }
 
-    vec->capacity -= sizeof(int);
-    vec->values = realloc(vec->values, vec->capacity);
+    vec->capacity /= 2;
+    vec->values = realloc(vec->values, vec->capacity * sizeof(int));
     vec->size--;
     return true;
 }
